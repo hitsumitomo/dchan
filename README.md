@@ -60,7 +60,7 @@ Extra parameters are: `func(T)` or `nil`.
 - `ch.Close(func(T))` - function to process (or utilize) elements remaining in the channel.
 - `ch.Close(nil)` - — discards any remaining elements in the channel.
 
-### Determines if the first element in the channel is ready
+### Determines if the first element in the channel is ready (SliceMode only)
 
 ```go
 ready := ch.Ready(func(v T) bool { return v.Status == READY })
