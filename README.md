@@ -4,13 +4,13 @@
 
 ## Functions
 
-- **New**: Initializes a new channel.
-- **Send**: Sends a value to the channel.
-- **Receive**: Retrieves a value from the channel.
-- **Close**: Closes the channel; optionally accepts a function to handle any remaining values.
-- **Ready**: Checks if the first element in the channel is ready for retrieval based on a custom boolean function, without actually removing it from the channel (available only in SliceMode).
-- **Len**: Returns the current length of the channel.
-- **IsClosed**: Checks whether the channel is closed.
+- `New[T any](params ...any) *C[T]`: Initializes a new channel.
+- `Send(data T)`: Sends a value to the channel.
+- `Receive() (T, bool)`: Retrieves a value from the channel.
+- `Close(f ...func(T)) `: Closes the channel; optionally accepts a function to handle any remaining values or nil to discard them.
+- `Ready(f func(T) bool) bool`: Checks if the first element in the channel is ready for retrieval based on a custom boolean function, without actually removing it from the channel (available only in SliceMode).
+- `Len() int `: Returns the current length of the channel.
+- `IsClosed() bool`: Checks whether the channel is closed.
 ## Usage
 
 ### Creating a new channel ([T any])
@@ -58,7 +58,7 @@ ch.Close()
 Extra parameters are: `func(T)` or `nil`.
 
 - `ch.Close(func(T))` - function to process (or utilize) elements remaining in the channel.
-- `ch.Close(nil)` - — discards any remaining elements in the channel.
+- `ch.Close(nil)` - discards any remaining elements in the channel.
 
 ### Determines if the first element in the channel is ready (SliceMode only)
 
